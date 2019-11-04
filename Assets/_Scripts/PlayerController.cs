@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
 {
     public PlayerAnimState playerAnimState;
 
+    public GameController gameController;
+
     [Header("Object Properties")]
     public Animator playerAnimator;
     public SpriteRenderer playerSpriteRenderer;
@@ -38,7 +40,6 @@ public class PlayerController : MonoBehaviour
 
 
         Move();
-
     }
 
     private void Move()
@@ -99,5 +100,25 @@ public class PlayerController : MonoBehaviour
             Mathf.Clamp(playerRigidBody.velocity.x, -maximumVelocity.x, maximumVelocity.x),
             Mathf.Clamp(playerRigidBody.velocity.y, -maximumVelocity.y, maximumVelocity.y)
             );
+
+
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.tag == "Coin")
+        {
+            Destroy(other.gameObject);
+            gameController.Score += 10;
+        }
+
+    }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            gameController.Lives -= 1;
+        }
     }
 }
