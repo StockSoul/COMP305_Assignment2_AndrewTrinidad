@@ -16973,6 +16973,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3478081342523636046, guid: 1f6c7814c1146804f8b7ae6e76ee9749,
+        type: 3}
+      propertyPath: m_TagString
+      value: DeathPlane
+      objectReference: {fileID: 0}
     - target: {fileID: 1217845283415822141, guid: 1f6c7814c1146804f8b7ae6e76ee9749,
         type: 3}
       propertyPath: m_LocalPosition.x

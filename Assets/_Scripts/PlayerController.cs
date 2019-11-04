@@ -120,5 +120,11 @@ public class PlayerController : MonoBehaviour
         {
             gameController.Lives -= 1;
         }
+        if (other.gameObject.tag == "DeathPlane")
+        {
+            gameController.Lives -= 1;
+        }
     }
+
+
 }
