@@ -54,12 +54,13 @@ public class PlayerController : MonoBehaviour
         if (Input.GetAxis("Horizontal") > 0)
         {
             playerSpriteRenderer.flipX = false;
-           // if(isGrounded)
-           // {
-                playerAnimState = PlayerAnimState.RUN;
-                playerAnimator.SetInteger("AnimState", (int)PlayerAnimState.RUN);
-                playerRigidBody.AddForce(Vector2.right * moveForce);
-            //}
+           if(isGrounded)
+           {
+              playerAnimState = PlayerAnimState.RUN;
+              playerAnimator.SetInteger("AnimState", (int)PlayerAnimState.RUN);
+              //playerRigidBody.AddForce(Vector2.right * moveForce);
+              playerRigidBody.AddForce(new Vector2(1, 1) * moveForce);
+           }
         }
 
 
@@ -67,12 +68,13 @@ public class PlayerController : MonoBehaviour
         if (Input.GetAxis("Horizontal") < 0)
         {
             playerSpriteRenderer.flipX = true;
-           //if(isGrounded)
-           //{
-                playerAnimState = PlayerAnimState.RUN;
-                playerAnimator.SetInteger("AnimState", (int)PlayerAnimState.RUN);
-                playerRigidBody.AddForce(Vector2.left * moveForce);
-            //}
+            if(isGrounded)
+            {
+              playerAnimState = PlayerAnimState.RUN;
+              playerAnimator.SetInteger("AnimState", (int)PlayerAnimState.RUN);
+              //playerRigidBody.AddForce(Vector2.left * moveForce);
+              playerRigidBody.AddForce(new Vector2(-1, 1) * moveForce);
+            }
         }
 
         //Jump
@@ -89,5 +91,7 @@ public class PlayerController : MonoBehaviour
             Mathf.Clamp(playerRigidBody.velocity.x, -maximumVelocity.x, maximumVelocity.x),
             Mathf.Clamp(playerRigidBody.velocity.y, -maximumVelocity.y, maximumVelocity.y)
             );
+
+        
     }
 }

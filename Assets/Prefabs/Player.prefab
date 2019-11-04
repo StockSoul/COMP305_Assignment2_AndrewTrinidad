@@ -151,8 +151,8 @@ MonoBehaviour:
   playerAnimator: {fileID: 8900891473546769813}
   playerSpriteRenderer: {fileID: 8900891473546769812}
   playerRigidBody: {fileID: 851114543108287684}
-  moveForce: 15
-  jumpForce: 50
+  moveForce: 25
+  jumpForce: 100
   isGrounded: 0
   groundTarget: {fileID: 1176717288}
   jumpSound: {fileID: 1804990309}
@@ -191,7 +191,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.15457869, y: -0.025762558}
+  m_Offset: {x: 0.061249733, y: -0.025762558}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -202,7 +202,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.7992382, y: 6.8484745}
+  m_Size: {x: 2.2259855, y: 6.8484745}
   m_EdgeRadius: 0
 --- !u!82 &1804990309
 AudioSource:
