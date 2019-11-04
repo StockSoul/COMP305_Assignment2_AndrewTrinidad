@@ -43,8 +43,8 @@ GameObject:
   - component: {fileID: 8900891473546769813}
   - component: {fileID: 561338055}
   - component: {fileID: 851114543108287684}
-  - component: {fileID: 6494872837799321330}
   - component: {fileID: 1804990309}
+  - component: {fileID: 1804990304}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -151,12 +151,12 @@ MonoBehaviour:
   playerAnimator: {fileID: 8900891473546769813}
   playerSpriteRenderer: {fileID: 8900891473546769812}
   playerRigidBody: {fileID: 851114543108287684}
-  moveForce: 25
+  moveForce: 35
   jumpForce: 100
-  isGrounded: 0
+  isGrounded: 1
   groundTarget: {fileID: 1176717288}
   jumpSound: {fileID: 1804990309}
-  maximumVelocity: {x: 10, y: 12}
+  maximumVelocity: {x: 12, y: 12}
 --- !u!50 &851114543108287684
 Rigidbody2D:
   serializedVersion: 4
@@ -178,32 +178,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &6494872837799321330
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8900891473546769815}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.061249733, y: -0.025762558}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4.83, y: 6.9}
-    newSize: {x: 4.83, y: 6.9}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 2.2259855, y: 6.8484745}
-  m_EdgeRadius: 0
 --- !u!82 &1804990309
 AudioSource:
   m_ObjectHideFlags: 0
@@ -300,3 +274,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!70 &1804990304
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8900891473546769815}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0000011920929, y: 0}
+  m_Size: {x: 3.400433, y: 6.9}
+  m_Direction: 0

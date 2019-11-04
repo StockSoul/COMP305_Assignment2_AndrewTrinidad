@@ -37,12 +37,18 @@ public class PlayerController : MonoBehaviour
         //     1 << LayerMask.NameToLayer("Ground"));
 
 
+        Move();
+
+    }
+
+    private void Move()
+    {
         isGrounded = Physics2D.BoxCast(
             transform.position, new Vector2(2.0f, 1.0f), 0.0f, Vector2.down,
             1.0f, 1 << LayerMask.NameToLayer("Ground"));
 
 
-        
+
         //Idle
         if (Input.GetAxis("Horizontal") == 0)
         {
@@ -53,32 +59,34 @@ public class PlayerController : MonoBehaviour
         //Move Right
         if (Input.GetAxis("Horizontal") > 0)
         {
-            playerSpriteRenderer.flipX = false;
-           if(isGrounded)
-           {
-              playerAnimState = PlayerAnimState.RUN;
-              playerAnimator.SetInteger("AnimState", (int)PlayerAnimState.RUN);
-              //playerRigidBody.AddForce(Vector2.right * moveForce);
-              playerRigidBody.AddForce(new Vector2(1, 1) * moveForce);
-           }
+            //playerSpriteRenderer.flipX = false;
+            transform.localScale = new Vector3(0.2f, 0.2f, 1.0f);
+            if (isGrounded)
+            {
+                playerAnimState = PlayerAnimState.RUN;
+                playerAnimator.SetInteger("AnimState", (int)PlayerAnimState.RUN);
+                //playerRigidBody.AddForce(Vector2.right * moveForce);
+                playerRigidBody.AddForce(new Vector2(1, 1) * moveForce);
+            }
         }
 
 
         //Move Left
         if (Input.GetAxis("Horizontal") < 0)
         {
-            playerSpriteRenderer.flipX = true;
-            if(isGrounded)
+            //playerSpriteRenderer.flipX = true;
+            transform.localScale = new Vector3(-0.2f, 0.2f, 1.0f);
+            if (isGrounded)
             {
-              playerAnimState = PlayerAnimState.RUN;
-              playerAnimator.SetInteger("AnimState", (int)PlayerAnimState.RUN);
-              //playerRigidBody.AddForce(Vector2.left * moveForce);
-              playerRigidBody.AddForce(new Vector2(-1, 1) * moveForce);
+                playerAnimState = PlayerAnimState.RUN;
+                playerAnimator.SetInteger("AnimState", (int)PlayerAnimState.RUN);
+                //playerRigidBody.AddForce(Vector2.left * moveForce);
+                playerRigidBody.AddForce(new Vector2(-1, 1) * moveForce);
             }
         }
 
         //Jump
-        if(Input.GetAxis("Jump") > 0 && (isGrounded))
+        if (Input.GetAxis("Jump") > 0 && (isGrounded))
         {
             playerAnimState = PlayerAnimState.JUMP;
             playerAnimator.SetInteger("AnimState", (int)PlayerAnimState.JUMP);
@@ -91,7 +99,5 @@ public class PlayerController : MonoBehaviour
             Mathf.Clamp(playerRigidBody.velocity.x, -maximumVelocity.x, maximumVelocity.x),
             Mathf.Clamp(playerRigidBody.velocity.y, -maximumVelocity.y, maximumVelocity.y)
             );
-
-        
     }
 }
