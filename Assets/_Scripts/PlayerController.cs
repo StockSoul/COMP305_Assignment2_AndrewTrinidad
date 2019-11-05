@@ -2,6 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Util;
+using UnityEngine.SceneManagement;
+
+//PlayerController
+//Andrew Trinidad
+//301021154
+//Last Modified: Oct 4, 2019
+//Program Description: This controller allows the player to move and
+//restricts player to certain actions. Also controls all of the sounds.
 
 public class PlayerController : MonoBehaviour
 {
@@ -22,6 +30,8 @@ public class PlayerController : MonoBehaviour
     public Transform groundTarget;
 
     public AudioSource jumpSound;
+    public AudioSource coinSound;
+    public AudioSource hurtSound;
 
     public Vector2 maximumVelocity = new Vector2(10.0f, 12.0f);
 
@@ -34,11 +44,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // isGrounded = Physics2D.Linecast(
-        //     transform.position, groundTarget.position,
-        //     1 << LayerMask.NameToLayer("Ground"));
-
-
         Move();
     }
 
@@ -60,14 +65,12 @@ public class PlayerController : MonoBehaviour
         //Move Right
         if (Input.GetAxis("Horizontal") > 0)
         {
-            //playerSpriteRenderer.flipX = false;
             transform.localScale = new Vector3(0.2f, 0.2f, 1.0f);
             if (isGrounded)
             {
                 playerAnimState = PlayerAnimState.RUN;
                 playerAnimator.SetInteger("AnimState", (int)PlayerAnimState.RUN);
-                //playerRigidBody.AddForce(Vector2.right * moveForce);
-                playerRigidBody.AddForce(new Vector2(1, 1) * moveForce);
+                playerRigidBody.AddForce(new Vector2(1, 0.1f) * moveForce);
             }
         }
 
@@ -75,14 +78,12 @@ public class PlayerController : MonoBehaviour
         //Move Left
         if (Input.GetAxis("Horizontal") < 0)
         {
-            //playerSpriteRenderer.flipX = true;
             transform.localScale = new Vector3(-0.2f, 0.2f, 1.0f);
             if (isGrounded)
             {
                 playerAnimState = PlayerAnimState.RUN;
                 playerAnimator.SetInteger("AnimState", (int)PlayerAnimState.RUN);
-                //playerRigidBody.AddForce(Vector2.left * moveForce);
-                playerRigidBody.AddForce(new Vector2(-1, 1) * moveForce);
+                playerRigidBody.AddForce(new Vector2(-1, 0.1f) * moveForce);
             }
         }
 
@@ -96,6 +97,8 @@ public class PlayerController : MonoBehaviour
             jumpSound.Play();
         }
 
+
+        //Cap Player Speed
         playerRigidBody.velocity = new Vector2(
             Mathf.Clamp(playerRigidBody.velocity.x, -maximumVelocity.x, maximumVelocity.x),
             Mathf.Clamp(playerRigidBody.velocity.y, -maximumVelocity.y, maximumVelocity.y)
@@ -106,23 +109,38 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        //If a player collides with this they either gain score or finish the level
         if(other.gameObject.tag == "Coin")
         {
             Destroy(other.gameObject);
             gameController.Score += 10;
+            coinSound.Play();
+        }
+        if(other.gameObject.tag == "Goal")
+        {
+            coinSound.Play();
+            SceneManager.LoadScene("Finish");
         }
 
     }
 
     void OnCollisionEnter2D(Collision2D other)
     {
+        //If player collides with any of these they lose a Life
         if (other.gameObject.tag == "Enemy")
         {
             gameController.Lives -= 1;
+            hurtSound.Play();
         }
         if (other.gameObject.tag == "DeathPlane")
         {
             gameController.Lives -= 1;
+            hurtSound.Play();
+        }
+        if (other.gameObject.tag == "Spike")
+        {
+            gameController.Lives -= 1;
+            hurtSound.Play();
         }
     }
 

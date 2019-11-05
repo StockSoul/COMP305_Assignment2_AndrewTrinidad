@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Util;
 
+//BanditController
+//Andrew Trinidad
+//301021154
+//Last Modified: Oct 4, 2019
+//Program Description: This controller functions the Bandit
+//and gives him basic enemy A.I
 
 public class BanditController : MonoBehaviour
 {
@@ -28,13 +34,11 @@ public class BanditController : MonoBehaviour
 
     public float movementSpeed;
 
-    // Start is called before the first frame update
     void Start()
     {
         banditAnimState = BanditAnimState.WALK;
     }
 
-    // Update is called once per frame
     void Update()
     {
         Move();

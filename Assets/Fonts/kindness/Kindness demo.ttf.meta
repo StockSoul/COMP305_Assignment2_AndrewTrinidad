@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: b7a4d33730252b24ebbb1c1777f1096a
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Kindness
+  fontNames:
+  - Kindness
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 8fbe513d4ef02b64a8ebf9f25722f15a, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

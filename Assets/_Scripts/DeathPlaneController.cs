@@ -2,24 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//DeathPlaneController
+//Andrew Trinidad
+//301021154
+//Last Modified: Oct 4, 2019
+//Program Description: This controller detects if the player 
+//has collided with it and sends them to a checkpoint.
 
 [System.Serializable]
 public class DeathPlaneController : MonoBehaviour
 {
     public Transform activeCheckpoint;
     public GameObject player;
-
-    //// Start is called before the first frame update
-    //void Start()
-    //{
-        
-    //}
-
-    //// Update is called once per frame
-    //void Update()
-    //{
-        
-    //}
 
     public void OnCollisionEnter2D(Collision2D other)
     {

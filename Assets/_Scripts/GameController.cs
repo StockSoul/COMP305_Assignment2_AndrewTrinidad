@@ -4,30 +4,37 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+//GameController
+//Andrew Trinidad
+//301021154
+//Last Modified: Oct 4, 2019
+//Program Description: This controller runs the main logic of the game 
+//and the scene management.
+
 public class GameController : MonoBehaviour
 {
+    [Header("Variables")]
     [SerializeField]
     private int _lives;
 
     [SerializeField]
     private int _score;
 
+    [Header("UI Management")]
     public Text livesLabel;
     public Text scoreLabel;
-
+    public GameObject startLabel;
+    public GameObject endLabel;
+    public Text highScoreLabel;
+    public Text congratsLabel;
     public GameObject startButton;
     public GameObject restartButton;
 
     public GameObject highScore;
 
     public GameObject grid;
-
-    public GameObject startLabel;
-    public GameObject endLabel;
-    public Text highScoreLabel;
-
-
-
+    
+    //Public Properties
     public int Lives
     {
         get
@@ -71,11 +78,6 @@ public class GameController : MonoBehaviour
         }
     }
 
-
-
-
-
-    // Start is called before the first frame update
     void Start()
     {
         highScore = GameObject.Find("HighScore");
@@ -90,6 +92,7 @@ public class GameController : MonoBehaviour
 
     }
 
+    //Manages Scenes and enables/disables various UI elements.
     private void SceneConfiguration()
     {
         switch (SceneManager.GetActiveScene().name)
@@ -103,6 +106,7 @@ public class GameController : MonoBehaviour
                 endLabel.SetActive(false);
                 highScoreLabel.enabled = false;
                 restartButton.SetActive(false);
+                congratsLabel.enabled = false;
                 break;
             case "Level1":
                 scoreLabel.enabled = true;
@@ -113,6 +117,7 @@ public class GameController : MonoBehaviour
                 endLabel.SetActive(false);
                 highScoreLabel.enabled = false;
                 restartButton.SetActive(false);
+                congratsLabel.enabled = false;
                 break;
             case "End":
                 scoreLabel.enabled = false;
@@ -123,7 +128,20 @@ public class GameController : MonoBehaviour
                 endLabel.SetActive(true);
                 highScoreLabel.enabled = true;
                 restartButton.SetActive(true);
+                congratsLabel.enabled = false;
                 highScoreLabel.text = "High Score: " + highScore.GetComponent<HighScore>().score;
+                break;
+            case "Finish":
+                scoreLabel.enabled = false;
+                livesLabel.enabled = false;
+                startButton.SetActive(false);
+                grid.SetActive(false);
+                startLabel.SetActive(false);
+                endLabel.SetActive(false);
+                highScoreLabel.enabled = true;
+                restartButton.SetActive(true);
+                highScoreLabel.text = "High Score: " + highScore.GetComponent<HighScore>().score;
+                congratsLabel.enabled = true;
                 break;
 
 
@@ -133,18 +151,18 @@ public class GameController : MonoBehaviour
         Score = 0;
     }
 
-
-    // Update is called once per frame
     void Update()
     {
 
     }
 
+    //When Start Button is Clicked Load Level 1
     public void OnStartButtonClick()
     {
         SceneManager.LoadScene("Level1");
     }
 
+    //When Restart Button is Clicked Load Level 1.
     public void OnRestartButtonClick()
     {
         SceneManager.LoadScene("Level1");

@@ -54,7 +54,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1947136018}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.8, y: -5.3, z: 0}
+  m_LocalPosition: {x: 1.8, y: -3.7, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_Children: []
   m_Father: {fileID: 5723982788132129537}
@@ -187,7 +187,7 @@ MonoBehaviour:
   lookAhead: {fileID: 1947136019}
   wallAhead: {fileID: 1156574760}
   isFacingRight: 1
-  movementSpeed: 5
+  movementSpeed: 4
 --- !u!50 &5723982788132129549
 Rigidbody2D:
   serializedVersion: 4
@@ -200,10 +200,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 10
+  m_Mass: 20
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 4
+  m_GravityScale: 10
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
